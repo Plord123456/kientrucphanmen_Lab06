@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>VN Real-Time Stock Ticker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    #log { height: 160px; overflow: auto; border: 1px solid #ddd; padding: 8px; }
+    .badge { padding: 2px 8px; border: 1px solid #aaa; border-radius: 6px; }
+    table { border-collapse: collapse; }
+    th, td { border: 1px solid #ddd; padding: 6px 10px; }
+  </style>
+</head>
+<body>
+  <h1>VN Real-Time Stock Ticker</h1>
+  <div class="row">
+    <select id="symbol">
+      <option>VNM</option><option>FPT</option><option>HPG</option><option>VCB</option><option>SSI</option><option>VHM</option><option>VIC</option><option>BID</option><option>CTG</option><option>GAS</option>
+    </select>
+    <button id="connect">Connect & Subscribe</button>
+    <button id="hf">Toggle High-Frequency Mode</button>
+    <span class="badge" id="state">disconnected</span>
+    <span class="badge" id="latency">latency: n/a</span>
+    <span class="badge" id="rate">rate: 0 msg/s</span>
+  </div>
+  <h3>Prices</h3>
+  <table>
+    <thead><tr><th>Symbol</th><th>Price</th><th>Last Update</th></tr></thead>
+    <tbody id="table"></tbody>
+  </table>
+  <h3>Log</h3>
+  <div id="log"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@8.0.0/dist/browser/signalr.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

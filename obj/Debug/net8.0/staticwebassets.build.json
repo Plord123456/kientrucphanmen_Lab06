@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "JuNTGvpDWpKWGI4wyW/eWTH/chF2800NjCeAJxNQOTs=",
+  "Source": "RealtimeLab_VN",
+  "BasePath": "_content/RealtimeLab_VN",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "RealtimeLab_VN/wwwroot",
+      "Source": "RealtimeLab_VN",
+      "ContentRoot": "/home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/wwwroot/",
+      "BasePath": "_content/RealtimeLab_VN",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/wwwroot/app.js",
+      "SourceId": "RealtimeLab_VN",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/wwwroot/",
+      "BasePath": "_content/RealtimeLab_VN",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/app.js"
+    },
+    {
+      "Identity": "/home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/wwwroot/index.html",
+      "SourceId": "RealtimeLab_VN",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/wwwroot/",
+      "BasePath": "_content/RealtimeLab_VN",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
+    }
+  ]
+}

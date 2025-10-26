@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/RealtimeLab_VN.props" />
+</Project>
