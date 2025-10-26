@@ -5,33 +5,170 @@
   <title>VN Real-Time Stock Ticker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: system-ui, sans-serif; margin: 20px; }
-    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-    #log { height: 160px; overflow: auto; border: 1px solid #ddd; padding: 8px; }
-    .badge { padding: 2px 8px; border: 1px solid #aaa; border-radius: 6px; }
-    table { border-collapse: collapse; }
-    th, td { border: 1px solid #ddd; padding: 6px 10px; }
+    :root {
+      --brand-color: #007bff;
+      --border-color: #dee2e6;
+      --bg-color: #f8f9fa;
+      --bg-highlight: #fff3cd;
+      --text-dark: #212529;
+      --text-light: #6c757d;
+      --state-connected: #28a745;
+      --state-disconnected: #dc3545;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 1.5rem;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h1, h3 {
+      color: var(--text-dark);
+      margin-top: 0;
+    }
+    h1 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    button,
+    select {
+      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button {
+      background-color: var(--brand-color);
+      color: white;
+      border-color: var(--brand-color);
+      font-weight: 500;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button#hf {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+    button#hf:hover {
+      background-color: #5a6268;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: white;
+      background-color: var(--text-light);
+    }
+    
+    /* Bạn có thể dùng JS để thêm các class này */
+    .badge.connected { background-color: var(--state-connected); }
+    .badge.disconnected { background-color: var(--state-disconnected); }
+    .badge.reconnecting { background-color: #ffc107; color: #000; }
+
+
+    #log {
+      height: 160px;
+      overflow: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px;
+      background-color: #fdfdfd;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.875rem;
+    }
+    #log div {
+      padding: 2px 0;
+      border-bottom: 1px dotted #eee;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    thead {
+      background-color: var(--bg-color);
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #fdfdfd;
+    }
+
+    /* Căn chỉnh cột cho dễ đọc */
+    td:nth-child(2), /* Price */
+    td:nth-child(3) { /* Last Update */
+      text-align: right;
+      font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* Hiệu ứng highlight bằng CSS */
+    @keyframes highlight-fade {
+      from { background-color: var(--bg-highlight); }
+      to { background-color: transparent; }
+    }
+    tr.highlight {
+      animation: highlight-fade 0.75s ease-out;
+    }
+
   </style>
 </head>
 <body>
-  <h1>VN Real-Time Stock Ticker</h1>
-  <div class="row">
-    <select id="symbol">
-      <option>VNM</option><option>FPT</option><option>HPG</option><option>VCB</option><option>SSI</option><option>VHM</option><option>VIC</option><option>BID</option><option>CTG</option><option>GAS</option>
-    </select>
-    <button id="connect">Connect & Subscribe</button>
-    <button id="hf">Toggle High-Frequency Mode</button>
-    <span class="badge" id="state">disconnected</span>
-    <span class="badge" id="latency">latency: n/a</span>
-    <span class="badge" id="rate">rate: 0 msg/s</span>
+  
+  <div class="container">
+    <h1>VN Real-Time Stock Ticker</h1>
+    <div class="row">
+      <select id="symbol">
+        <option>VNM</option><option>FPT</option><option>HPG</option><option>VCB</option><option>SSI</option><option>VHM</option><option>VIC</option><option>BID</option><option>CTG</option><option>GAS</option>
+      </select>
+      <button id="connect">Connect & Subscribe</button>
+      <button id="hf">Toggle High-Frequency Mode</button>
+      <span class="badge disconnected" id="state">disconnected</span>
+      <span class="badge" id="latency">latency: n/a</span>
+      <span class="badge" id="rate">rate: 0 msg/s</span>
+    </div>
+    <h3>Prices</h3>
+    <table>
+      <thead><tr><th>Symbol</th><th>Price (VND)</th><th>Last Update</th></tr></thead>
+      <tbody id="table"></tbody>
+    </table>
+    <h3>Log</h3>
+    <div id="log"></div>
   </div>
-  <h3>Prices</h3>
-  <table>
-    <thead><tr><th>Symbol</th><th>Price</th><th>Last Update</th></tr></thead>
-    <tbody id="table"></tbody>
-  </table>
-  <h3>Log</h3>
-  <div id="log"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@8.0.0/dist/browser/signalr.js"></script>
   <script src="app.js"></script>

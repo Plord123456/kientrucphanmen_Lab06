@@ -22,3 +22,4 @@
 /home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/obj/Debug/net8.0/RealtimeLab_VN.pdb
 /home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/obj/Debug/net8.0/RealtimeLab_VN.genruntimeconfig.cache
 /home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/obj/Debug/net8.0/ref/RealtimeLab_VN.dll
+/home/d/Documents/kientrucphanmen/RealtimeLab_VN_Starter/obj/Debug/net8.0/RealtimeLab_VN.sourcelink.json

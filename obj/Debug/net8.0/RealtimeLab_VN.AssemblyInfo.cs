@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RealtimeLab_VN")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d284c1aa55e5b03ea0e8ec5a7494d6691046276")]
 [assembly: System.Reflection.AssemblyProductAttribute("RealtimeLab_VN")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RealtimeLab_VN")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

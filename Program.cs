@@ -5,10 +5,10 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // TODO: Add SignalR service
-// builder.Services.AddSignalR();
+builder.Services.AddSignalR();
 
 // TODO: Register hosted service for price feed
-// builder.Services.AddHostedService<Services.PriceFeed>();
+builder.Services.AddHostedService<Services.PriceFeed>();
 
 builder.Services.AddResponseCompression(options =>
 {
@@ -17,8 +17,13 @@ builder.Services.AddResponseCompression(options =>
 
 var app = builder.Build();
 app.UseResponseCompression();
+
+// Thêm dòng này để server nhận index.html làm trang mặc định
+app.UseDefaultFiles(); //
+
 app.UseStaticFiles();
 
 // TODO: Map hub endpoint, e.g. app.MapHub<Hubs.TickerHub>("/hubs/ticker");
+app.MapHub<Hubs.TickerHub>("/hubs/ticker");
 
 app.Run();
